@@ -1,0 +1,6 @@
+/* pages/toAddTask/toAddTask.wxss */
+view{
+  text-align: center;
+  line-height: 100vh;
+  width: 100vw;
+}

@@ -1,0 +1,40 @@
+<view class='main'>
+  <swiper indicator-dots="{{indicatorDots}}"  
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}" wx:key="*this">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image"/>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  
+
+  <view wx:for="{{array}}" wx:key="*this" class='list'>
+    <view class='top grid'>
+      <view class='grid-cell col-2'>
+        <image class='face ' src="{{item.cavatarUrl}}"></image>
+      </view>
+      <view class='title grid-cell col-10'>
+        <view class='username'>
+          {{item.title}}
+        </view>
+        <view class='info'>
+          哈尔滨理工大学 西区
+          |
+          {{item.tcreate_time}}
+        </view>
+      </view>
+    </view>
+    <view class='content' id='{{item.tlocation_id}}' bindtap='gotoContent'>
+      <view class='photos'>
+        <image wx:for="{{item.imgUrls}}" src='{{item}}' class='photo'></image>
+      </view>
+      <view class='main_txt'>{{item.content}}</view>
+    </view>
+    <view class='button-box'>
+      <button type='primary' size='mini' class='button receive'>我来帮你</button>
+    </view>
+  </view>
+</view>
+

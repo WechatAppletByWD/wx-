@@ -1,0 +1,31 @@
+<view class='main'>
+  <view wx:for="{{array}}" wx:key="*this" class='list'>
+    <view class='top grid'>
+      <view class='grid-cell col-2'>
+        <image class='face ' src='{{item.face_src}}'></image>
+      </view>
+      <view class='title grid-cell col-10'>
+        <view class='username'>
+          {{item.tincept_id}}
+        </view>
+        <view class='info'>
+          {{item.address}}
+          |
+          {{item.tcreate_time}}
+        </view>
+      </view>
+    </view>
+    <view class='content' id='{{item.tlocation_id}}' bindtap='gotoContent'>
+      <view class='photos'>
+        <image wx:for="{{item.imgUrls}}" src='{{item}}' class='photo'></image>
+      </view>
+      <view class='main_txt'>{{item.content}}</view>
+    </view>
+    <view class='button-box'>
+      <button type='warn' wx:if="{{1 > 5}}" size='mini' class='button withdraw'>撤回订单</button>
+      <button type='warn' size='mini' class='button cancel'>取消接单</button>
+      <button type='defualt' size='mini' class='button see-content'>查看内容</button>
+    </view>
+  </view>
+
+</view>

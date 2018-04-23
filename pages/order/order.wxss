@@ -1,0 +1,61 @@
+.main{
+  background-color: #eee;
+  height: auto;
+  overflow-x: hidden;
+}
+.slide-image{
+  width:100%;
+}
+.list{
+  padding: 0.2rem;
+  width: 100%;
+
+  margin-bottom: 2px;
+  background-color: #fff;
+  
+}
+.list .top{
+  display:inline-flex;
+  width: 100%;
+  height: 2rem;
+}
+.list .face{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+.list .title{
+  font-size: 0.8rem;
+}
+.list .info{
+  font-size: 0.6rem;
+  color: #aaa;
+}
+.list .photos{
+  white-space: nowrap;
+  
+  overflow: auto;
+  overflow-y: hidden;
+}
+.list .photo{
+  display: inline-block;
+  margin: 0 3px;
+  
+  width: 6rem;
+  
+}
+.list .main_txt{
+  display: inline-block;
+  margin: 0.3rem auto;
+  font-size: 0.8rem;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.button-box{
+  text-align: right;
+}
+.button-box .button{
+  margin-right: 20px;
+}

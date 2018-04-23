@@ -1,0 +1,19 @@
+<view class='main'>
+  <!--任务标题  -->
+  <view class='top-title'>{{title}}</view>
+
+  <!--任务地址  -->
+  <view class='task-address'>哈尔滨理工大学西区</view>
+
+  <!--任务分类  -->
+  <view class='task-address'>{{type}}</view>
+
+  <!--任务内容主题  -->
+  <view class='content' id='{{tlocation_id}}' bindtap='gotoContent'>
+    <view class='photos'>
+      <image wx:for="{{imgUrls}}" src='{{item}}' class='photo'></image>
+    </view>
+    <view class='main_txt'>{{content}}</view>
+  </view>
+  <view></view>
+</view>
