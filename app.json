@@ -3,10 +3,10 @@
     "pages/index/index",
     "pages/mine/mine",
     "pages/order/order",
-    "pages/logs/logs",
-    "pages/content/content",
+    "pages/toAddTask/toAddTask",
     "pages/addTask/addTask",
-    "pages/toAddTask/toAddTask"
+    "pages/content/content",
+    "pages/setting/setting"
   ],
   "window":{
     "backgroundTextStyle":"light",

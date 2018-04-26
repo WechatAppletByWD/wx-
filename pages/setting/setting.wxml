@@ -1,0 +1,16 @@
+<view class='main'>
+  <view class="section">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class='form_tr'><view class='key'>昵称: </view><input name="title" id="title" value="{{username}}" /></view>
+      <view class='form_tr'><view class='key'>昵称: </view><input name="title" id="title" value="{{username}}" /></view>
+      
+      <view class="btn-area">
+        <view class='btn-sub'>
+          <button formType="submit">确认修改</button>
+        </view>
+      
+      </view>
+    </form>
+  </view>
+
+</view>

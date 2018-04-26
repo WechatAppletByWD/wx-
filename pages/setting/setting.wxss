@@ -1,4 +1,7 @@
+/* pages/setting/setting.wxss */
 /* pages/addTask/addTask.wxss */
+
+
 .main{
   width: 100%;
   height: 100vh;
@@ -19,6 +22,26 @@
   font-size: 0.7rem;
   padding-top: 0.5rem;
 }
+.section .form_tr{
+  margin: 0.5rem 0;
+}
+.section .form_tr view,input{
+  display: inline-block;
+  line-height: 1.5rem;
+  vertical-align: middle;
+}
+.section .form_tr .key{
+  border-left: 0.2rem solid #eee;
+  font-size: 0.8rem;
+  color: gray;
+  padding-right: 1rem;
+  padding-left: 0.5rem;
+  vertical-align:baseline;
+}
+
+
+
+
 .btn-area{
   position: fixed;
   bottom: 0.2rem;

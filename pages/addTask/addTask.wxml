@@ -3,8 +3,10 @@
     <form bindsubmit="formSubmit" bindreset="formReset">
       <input placeholder="给任务起一个响亮的名字" name="title" id="title" focus="{{focus}}" />
       <textarea placeholder="这个只有在按钮点击的时候才聚焦" name="content" id="content" focus="{{focus}}" />
-      <button bindtap="gotoMap">地址</button>
-      
+      <view class="now_address">
+        <view class='address_text'>{{address}}</view>
+        <view class='btn_get_location' bindtap='getLocation' style="background-image: url('../../images/location.png')"></view>
+      </view>
       <view class="btn-area">
         <view class='btn-sub'>
           <button formType="submit">发布</button>

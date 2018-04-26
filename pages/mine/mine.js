@@ -37,6 +37,12 @@ Page({
       url: '../order/order'
     })
   },
+  gotoSetting: function () {
+    var info = `?username=${this.data.userInfo.nickName}`;
+    wx.navigateTo({
+      url: '../../pages/setting/setting' + info,
+    })
+  },
   onLoad: function () {
     this.setData({'userInfo': app.globalData.userInfo});
     console.log(this.data.userInfo)  

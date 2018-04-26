@@ -8,7 +8,7 @@
   </view>
 
   <view class="separate"></view>
-  <view class="setting">
+  <view class="setting" bindtap='gotoSetting'>
     修改个人信息
   </view>
   

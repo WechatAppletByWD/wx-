@@ -1,35 +1,37 @@
 //app.js
 App({
-  
+
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    var that = this;
     // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        var that = this;
-        wx.request({
-          url: 'http://address/api/getUserInfo',
-          data: {
-            code: res.code
-          },
-          success: function (res) {
-            console.log('openid',res.data.openid)
-            that.globalData.openid = res.data.openid;
-            console.log(that.globalData)
-          },
-          fail: function () {
+    new Promise((resolve, reject) => {
+      wx.login({
+        success: res => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          var that = this;
+          wx.request({
+            url: 'http://address/api/getUserInfo',
+            data: {
+              code: res.code
+            },
+            success: function (res) {
+              console.log('openid', res.data.openid)
+              that.globalData.openid = res.data.openid;
+              console.log(that.globalData)
+              resolve()
+            },
+            fail: function () {
 
-          }
-        })
-      }
-    })
-    // 获取用户信息
-    let p1 = new Promise((resolve, reject) => {
+            }
+          })
+        }
+      })
+    }).then(() => {
+      return new Promise((resolve, reject) => {
         wx.getSetting({
           success: res => {
             if (res.authSetting['scope.userInfo']) {
@@ -45,63 +47,97 @@ App({
                   }
                   resolve(res.userInfo);
 
-                }
+                },
+
               })
             }
           }
         })
       })
-    
-    let p2 =  new Promise((resolve, reject) => {
-        //用户信息发送后台存储
-        resolve();
-      })
-   
-    var that = this;
-    /*Promise.all([
-      p1,
-      p2
-    ])
-      .then((res) => {
-        //用户信息发送后台存储
-        var data = res[0];
-        console.log('pe', that)
+    }).then(() => {
+      return new Promise((resolve, reject) => {
         wx.request({
-          url: 'http://address/180404web_bg_war/newUserfasd',
+          url: 'http://address/180404web_bg_war/userByLocationId',
           data: {
-            "location_id": that.globalData.openid,
-            "username": data.nickName,
-            "password": "67676rrhf",
-            "sex": data.gender,
-            "wechat": "",
-            "qq": "",
-            "tel": "1889999167",
-            "address": "哈理工",
-            "ip": "127.121.34.516",
-            "device": "iphone",
-            "credit": "122",
-            "rank": "2",
-            "address_id": "wieiwei1erre2018980",
-            "create_time": "20180902",
-            "avatarUrl": data.avatarUrl
+            location_id: that.globalData.openid
           },
-          method: 'POST',
           header: {
             'content-type': 'application/json' // 默认值
           },
           success: function (res) {
-            console.log('p3_2', res.data)
+            if (res.data.code === "400") {     //新用户
+              var userInfo = that.globalData.userInfo;
+              //新用户将信息存入数据库
+              wx.request({
+                url: 'http://address/180404web_bg_war/newUser', //仅为示例，并非真实的接口地址
+                method: 'POST',
+                data: {
+                  "location_id": that.globalData.openid,
+                  "username": userInfo.nickName,
+                  "password": "xxxxxxxxx",
+                  "sex": userInfo.gender,
+                  "wechat": "xxxxxxxxx",
+                  "qq": "xxxxxxxx",
+                  "tel": "",
+                  "address": "",
+                  "ip": "127.121.34.516xxx",
+                  "device": "iphonexxxx",
+                  "address_id": "xxxxxxxxxxxxx",
+                  "avatarUrl": userInfo.avatarUrl
+                },
+                header: {
+                  'content-type': 'application/json' // 默认值
+                },
+                success: function (res) {
+                  resolve(res)
+                }
+              })
+            } else {
+              that.globalData.address = res.data.object.address
+              resolve(res);
+            }
+          }
+        })
+      })
+    }).then(() => {
+      if (!that.globalData.address) {
+        wx.chooseLocation({
+          success: function (res) {
+            that.globalData.address = res.address;
+            var userInfo = that.globalData.userInfo;
+            wx.request({
+              url: 'http://address/180404web_bg_war/userUpdate', //仅为示例，并非真实的接口地址
+              method: 'POST',
+              data: {
+                "location_id": that.globalData.openid,
+                "username": userInfo.nickName,
+                "password": "xxxxxxxxx",
+                "sex": userInfo.gender,
+                "wechat": "xxxxxxxxx",
+                "qq": "xxxxxxxx",
+                "tel": "",
+                "address": res.address,
+                "ip": "127.121.34.516xxx",
+                "device": "iphonexxxx",
+                "address_id": "xxxxxxxxxxxxx",
+                "avatarUrl": userInfo.avatarUrl
+              },
+              header: {
+                'content-type': 'application/json' // 默认值
+              },
+              success: function (res) {
+              }
+            })
           }
         })
       }
-      );*/
-
-
-
-
+    }).catch((err) => {
+      console.error(err)
+    })
   },
   globalData: {
     userInfo: null,
-    openid: null
+    openid: null,
+    address: null
   }
 })

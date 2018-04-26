@@ -20,7 +20,7 @@
           {{item.title}}
         </view>
         <view class='info'>
-          哈尔滨理工大学 西区
+          {{item.taddress}}
           |
           {{item.tcreate_time}}
         </view>
