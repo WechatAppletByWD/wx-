@@ -1,19 +1,53 @@
 <view class='main'>
   <!--任务标题  -->
-  <view class='top-title'>{{title}}</view>
+  <view class='top-title'>{{taskInfo.title}}</view>
 
   <!--任务地址  -->
-  <view class='task-address'>哈尔滨理工大学西区</view>
+  <view class='task-address'>{{taskInfo.taddress}}</view>
 
   <!--任务分类  -->
-  <view class='task-address'>{{type}}</view>
+
 
   <!--任务内容主题  -->
-  <view class='content' id='{{tlocation_id}}' bindtap='gotoContent'>
+  <view class='content' id='{{taskInfo.tlocation_id}}' bindtap='gotoContent'>
     <view class='photos'>
       <image wx:for="{{imgUrls}}" src='{{item}}' class='photo'></image>
     </view>
-    <view class='main_txt'>{{content}}</view>
+    <view class='main_txt'>{{taskInfo.content}}</view>
   </view>
-  <view></view>
+
+  <!--发布人信息  -->
+  <view class='userInfo-box'>
+    <view class='user-top'>
+      <view class='top-left'>
+        <image class='face' src='{{userInfo.avatarUrl}}'></image>
+        <view class='top-middle'>
+          <view class='username'>{{userInfo.username}}</view>
+          <view class='info'>
+            {{userInfo.sex}} {{taskInfo.tcreate_time}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='footer'>
+  <view class='button-box'>
+    <button type='primary' size='mini' class='button' bindtap="show">联系TA</button>
+    <button type='warn' size='mini' class='button' id='{{taskInfo.tlocation_id}}' bindtap='taskIncept'>接单</button>
+  </view>
+</view>
+
+<!--弹出联系方式  -->
+<view class="modal-box-top" hidden="{{flag}}" bindtap="hide">
+  <view class='modal-content'>
+    <view class='tel' bindtap='call'>{{userInfo.tel}}</view>
+  </view>
+</view>
+
+<!--接单成功弹窗  -->
+<view class="modal-box" hidden="{{flag}}" bindtap="hide">
+  <view class='modal-content'>
+    <view class='tel' bindtap='call'>{{userInfo.tel}}</view>
+  </view>
 </view>

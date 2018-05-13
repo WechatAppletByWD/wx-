@@ -1,5 +1,5 @@
 <view class='main'>
-  <swiper indicator-dots="{{indicatorDots}}"  
+  <swiper class='swiper' indicator-dots="{{indicatorDots}}"  
     autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{imgUrls}}" wx:key="*this">
       <swiper-item>
@@ -10,10 +10,10 @@
 
   
 
-  <view wx:for="{{array}}" wx:key="*this" class='list'>
+  <view wx:for="{{array}}" wx:key="*this " class='list'>
     <view class='top grid'>
       <view class='grid-cell col-2'>
-        <image class='face ' src="{{item.cavatarUrl}}"></image>
+        <image class='face ' src="{{item.avatarUrl}}"></image>
       </view>
       <view class='title grid-cell col-10'>
         <view class='username'>
@@ -27,14 +27,20 @@
       </view>
     </view>
     <view class='content' id='{{item.tlocation_id}}' bindtap='gotoContent'>
-      <view class='photos'>
-        <image wx:for="{{item.imgUrls}}" src='{{item}}' class='photo'></image>
-      </view>
+      <!-- <view class='photos'>
+        <image wx:for="{{item.tavatarUrl}}" src='{{item}}' class='photo'></image>
+      </view> -->
       <view class='main_txt'>{{item.content}}</view>
     </view>
     <view class='button-box'>
-      <button type='primary' size='mini' class='button receive'>我来帮你</button>
+      <button type='primary' id='{{item.tlocation_id}}' size='mini' class='button receive' bindtap='taskIncept'>我来帮你</button>
     </view>
   </view>
+  
 </view>
-
+<!--接单成功弹窗  -->
+<view class="modal-box" hidden="{{flag}}" bindtap="hide">
+  <view class='modal-content'>
+    <view class='msg'>接单成功</view>
+  </view>
+</view>

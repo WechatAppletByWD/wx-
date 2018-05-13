@@ -73,6 +73,9 @@
   text-overflow:ellipsis;
   white-space: nowrap;
 }
+.now_address .address_text input{
+  width: 100%;
+}
 .now_address .btn_get_location{
   display: inline-block;
   width: 1rem;

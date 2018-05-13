@@ -9,15 +9,59 @@
 
 .section{
   border-top: 0.1rem solid #eee;
-  padding: 0.7rem;
+  background-color: #eee;
+}
+.btn_camera{
+  width: 100%;
+  padding: 1rem 0;
+  text-align: center;
   background-color: #fff;
 }
+.btn_camera image{
+  width: 2rem;
+  height: 2rem;
+
+}
+.photo_list{
+  background-color: #fff;
+}
+.photo_list image{
+  position: relative;
+  margin: 0.2rem 0.2rem;
+  width: 5rem;
+  height: 5rem;
+  color: #fff;
+}
+.photo_list .photo_box{
+  display: inline-block;
+  position: relative;
+  width: auto;
+  height: auto;
+}
+.photo_list .photo_box .del_photo{
+  display: inline-block;
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+  background-size: 1rem 1rem;
+}
 .section #title{
+  margin-top: 0.5rem;
   font-size: 1rem;
+  text-indent: 1rem;
+  background-color: #fff;
 }
 .section #content{
+  margin: 0;
+  width: 100%;
+  text-indent: 1rem;
   font-size: 0.7rem;
   padding-top: 0.5rem;
+  background-color: #fff;
 }
 .btn-area{
   position: fixed;
@@ -27,10 +71,8 @@
   background-color: #fff;
 }
 .btn-area .btn-sub{
-  margin: 0.2rem 0.5rem;
   background-color: red;
   border-radius: 0px;
-
 }
 .btn-area .btn-sub button{
   height: 2rem;
@@ -43,12 +85,17 @@
 
 .now_address .address_text{
   display: inline-block;
-  width: 90%;
+  width: 100%;
+  text-indent: 1rem;
   font-size: 0.8rem;
-  line-height: 1rem;
+  line-height: 2rem;
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+  background-color: #fff;
+  background-size: 1rem 1rem;
+  background-repeat: no-repeat;
+  background-position: 90% 0.5rem;
 }
 .now_address .btn_get_location{
   display: inline-block;
@@ -56,4 +103,6 @@
   height: 1rem;
   background-size: 1rem 1rem;
 }
+
+
 

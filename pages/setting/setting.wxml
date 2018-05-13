@@ -1,9 +1,13 @@
 <view class='main'>
   <view class="section">
     <form bindsubmit="formSubmit" bindreset="formReset">
-      <view class='form_tr'><view class='key'>昵称: </view><input name="title" id="title" value="{{username}}" /></view>
-      <view class='form_tr'><view class='key'>昵称: </view><input name="title" id="title" value="{{username}}" /></view>
-      
+      <view class='form_tr'><view class='key'>昵称: </view><input name="username" id="username" value="{{userInfo.username}}" /></view>
+      <view class='form_tr'><view class='key'>手机号码: </view><input name="tel" id="tel" value="{{userInfo.tel}}" /></view>
+      <view class="now_address"  bindtap='getLocation'>
+        <view class='address_text'><input name="address" id="address" value="{{userInfo.address}}" /></view>
+        <view class='btn_get_location' style="background-image: url('../../images/location.png')"></view>
+      </view>
+
       <view class="btn-area">
         <view class='btn-sub'>
           <button formType="submit">确认修改</button>

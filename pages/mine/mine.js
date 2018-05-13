@@ -4,32 +4,6 @@ Page({
     userInfo: {},
     motto: 'Hello World',
     // orderItems
-    orderItems: [
-      {
-        typeId: 0,
-        name: '待付款',
-        url: 'bill',
-        imageurl: '',
-      },
-      {
-        typeId: 1,
-        name: '待发货',
-        url: 'bill',
-        imageurl: '',
-      },
-      {
-        typeId: 2,
-        name: '待收货',
-        url: 'bill',
-        imageurl: ''
-      },
-      {
-        typeId: 3,
-        name: '待评价',
-        url: 'bill',
-        imageurl: ''
-      }
-    ],
   },
   //事件处理函数
   toOrder: function () {
@@ -38,13 +12,18 @@ Page({
     })
   },
   gotoSetting: function () {
-    var info = `?username=${this.data.userInfo.nickName}`;
+    console.log(app.globalData)
+    var info = `?openid=${app.globalData.openid}`;
     wx.navigateTo({
       url: '../../pages/setting/setting' + info,
     })
   },
   onLoad: function () {
     this.setData({'userInfo': app.globalData.userInfo});
+    var safe_tel_key = 'userInfo.safe_tel';
+    var safe_tel_value = `${this.data.userInfo.tel.substring(0, 3)}****${this.data.userInfo.tel.substring(7, 10)}`
+    this.setData({ [safe_tel_key]: safe_tel_value});
+
     console.log(this.data.userInfo)  
   }
 })

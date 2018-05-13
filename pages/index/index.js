@@ -10,37 +10,78 @@ Page({
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
-    duration: 1000
+    duration: 1000,
+    flag: true
   },
-  onLoad: function(){
+  show: function () {
+    this.setData({ flag: false })
+  },
+  hide: function () {
+    this.setData({ flag: true })
+  },
+  onLoad: function () {
     var that = this;
-    
-    // wx.chooseLocation({
-    //   success: function (res) {
-    //     console.log(res)
-    //   }
-    // })
-    
+
+    new Promise((resolve, rejected) => {
+      wx.request({
+        url: 'http://address/180404web_bg_war/taskByStatus',
+        data: {
+          status: 0
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          var dataList = res.data.data;
+          //截取要显示的字符串
+          // dataList.forEach((item) => {
+          //   if (item.tlocation_id) {
+          //     console.log(item.tcreate_time)
+          //     item.tcreate_time = item.tcreate_time.substring(5, 16);
+          //     item.tcreate_time = item.tcreate_time.replace('-', '/');
+          //     if (item.avatarUrl.indexOf("https") === -1) {
+          //       item.avatarUrl = "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLSf9eVs6Qp5SkeeibperoiawRdWqGFiblh9oIb8EXRP6vyJexcdlqDCIkM9VkkpiaajKpFDwoUuHqDhQ/0"
+          //     }
+          //   }
+
+          // })
+          
+          that.setData({ array: dataList });
+          console.log(dataList)
+          resolve();
+        }
+      })
+    }).then(() => {
+      var arr = that.data.array;
+
+      for (let i = 0; i < arr.length; i++) {
+        var key = `array[${i}].tavatarUrl`;
+        var json = JSON.parse(arr[i].tavatarUrl);
+        that.setData({ [key]: json })
+      }
+    })
+  },
+  gotoContent: function (event) {
+    console.log(event);
+    wx.navigateTo({
+      url: '../content/content?currentTarget=' + event.currentTarget.id
+    })
+  },
+  taskIncept: function (event) {
     wx.request({
-      url: 'http://address/180404web_bg_war/getAllTasks', 
+      url: 'http://address/180404web_bg_war/taskIncept',
       data: {
-        
+        tlocation_id: event.currentTarget.id,
+        tincept_id: app.globalData.openid
       },
       header: {
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        that.setData({array: res.data.data});
-        console.log(res.data.data)
+        console.log(res.data)
       }
     })
-  },
-  gotoContent: function(event){
-    console.log(event);
-    wx.navigateTo({
-      url: '../content/content?currentTarget=' + event.currentTarget.id
-    })
   }
-  
- 
+
+
 })

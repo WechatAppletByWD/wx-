@@ -3,59 +3,104 @@
   height: auto;
   overflow-x: hidden;
 }
-.slide-image{
-  width:100%;
-}
-.list{
-  padding: 0.2rem;
+/* .table{
   width: 100%;
-
-  margin-bottom: 2px;
   background-color: #fff;
-  
 }
-.list .top{
-  display:inline-flex;
-  width: 100%;
-  height: 2rem;
-}
-.list .face{
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-}
-.list .title{
+.table .btn_table{
+  text-align: center;
   font-size: 0.8rem;
+  line-height: 2rem;
+  color: #666;
 }
-.list .info{
-  font-size: 0.6rem;
-  color: #aaa;
+.table .btn_table.active{
+  border-bottom: 0.1rem solid #ff6700;
 }
-.list .photos{
-  white-space: nowrap;
-  
-  overflow: auto;
-  overflow-y: hidden;
+.task{
+  margin-top: 0.6rem;
 }
-.list .photo{
-  display: inline-block;
-  margin: 0 3px;
-  
-  width: 6rem;
-  
-}
-.list .main_txt{
-  display: inline-block;
-  margin: 0.3rem auto;
+.task .title{
+  padding-left: 1rem;
+  background-color: #fff;
   font-size: 0.8rem;
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  line-height: 1.5rem;
 }
-.button-box{
+.task .content{
+  padding: 1rem 2rem;
+  font-size: 0.8rem;
+  background-color: #fafafa;
+  color: #666;
+}
+.button-box {
+  padding-top: 0.5rem;
   text-align: right;
+  background-color: #fff;
 }
-.button-box .button{
-  margin-right: 20px;
+
+.button-box .button {
+  margin-right: 1rem;
+  color: red;
+  background-color: #fff;
+  border-radius: 1rem;
+  border: 1px solid red;
+  font-size: 0.8rem;
+} */
+
+/**index.wxss**/  
+.swiper-tab{  
+    position: relative;
+    width: 100%;  
+    border-bottom: 2rpx solid #777777;  
+    text-align: center;  
+    line-height: 80rpx;}  
+.swiper-tab-list{  
+    
+    font-size: 30rpx;  
+    display: inline-block;  
+    width: 25%;  
+    color: #777777;  
+}  
+.on{ color: #da7c0c;  
+    border-bottom: 5rpx solid #da7c0c;}  
+  
+.swiper-box{  }  
+.swiper-box view{  
+   
+} 
+swiper-item{
+  height: auto;
+  overflow: scroll;
+}
+.task{
+  margin-top: 0.6rem;
+}
+.task .title{
+  padding-left: 1rem;
+  background-color: #fff;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+}
+.task .content{
+  padding: 1rem 2rem;
+  font-size: 0.8rem;
+  background-color: #fafafa;
+  color: #666;
+}
+.button-box {
+  padding-top: 0.5rem;
+  text-align: right;
+  background-color: #fff;
+}
+
+.button-box .button {
+  margin-right: 1rem;
+  color: #c02c38;
+  background-color: #fff;
+  border-radius: 1rem;
+  border: 1px solid #c02c38;
+  font-size: 0.8rem;
+} 
+.button-box .button.complete{
+  color: #20a162;
+  border-color: #20a162;
 }

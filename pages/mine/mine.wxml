@@ -3,8 +3,9 @@
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    <image src="" class="account-bg">
-    </image>
+    <text class="userinfo-tel">{{userInfo.safe_tel}}</text>
+    <text class="userinfo-addr">{{userInfo.address}}</text>
+    
   </view>
 
   <view class="separate"></view>
