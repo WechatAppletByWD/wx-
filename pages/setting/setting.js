@@ -16,7 +16,7 @@ Page({
     console.log(options)
     var that = this;
     wx.request({
-      url: 'http://address/180404web_bg_war/userByLocationId', //仅为示例，并非真实的接口地址
+      url: app.url+'/wx_server/userByLocationId', //仅为示例，并非真实的接口地址
       data: {
         location_id: options.openid
       },
@@ -70,7 +70,7 @@ Page({
 
     console.log('input_data', this.data.input_data)
     wx.request({
-      url: 'http://address/180404web_bg_war/userUpdate',
+      url: app.url+'/wx_server/userUpdate',
       data: that.data.input_data,
       method: 'POST',
       header: {
@@ -91,8 +91,9 @@ Page({
           success: function (res) {
             if (res.confirm) {
               console.log('用户点击确定', res.confirm);
+              var params = `?username={$that.data.userInfo.username}&tel={$that.data.userInfo.tel}&address={$that.data.userInfo.address}`
               wx.reLaunch({
-                url: '../../pages/mine/mine'
+                url: '../mine/mine'
               })
             }
           }
@@ -126,7 +127,11 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+ 
+    wx.reLaunch({
+      url: '../../pages/mine/mine'
+    })
+  
   },
 
   /**

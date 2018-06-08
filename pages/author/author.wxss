@@ -1,0 +1,9 @@
+/* pages/author/author.wxss */
+.main{
+  text-align: center;
+}
+.logo{
+  margin: 1rem auto;
+  width: 4rem;
+  height: 4rem;
+}

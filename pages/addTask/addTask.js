@@ -14,14 +14,17 @@ Page({
       "timeLimit": "20180419",
       "taddress": null
     },
-    address: null,
-    model: ''
+    latitude: null,
+    longitude: null,
+    address: '选择任务地点',
+    model: '',
+    lock: false,
+    tavatarUrl: []
   },
   formSubmit: function (e) {
-    
     var that = this;
-    if (!e.detail.value || !e.detail.value.content || !app.globalData.openid){
-      
+    if (!that.data.longitude || !e.detail.value || !e.detail.value.content || !app.globalData.openid) {
+
       wx.showModal({
         title: '',
         content: '请将内容填写完整',
@@ -32,7 +35,7 @@ Page({
           }
         }
       })
-    }else{
+    } else {
       console.log('form发生了submit事件，携带数据为：', e.detail.value)
       console.log('input_data', that.data)
       this.setData({
@@ -45,13 +48,14 @@ Page({
           "tavatarUrl": !that.data.tavatarUrl ? '' : JSON.stringify(that.data.tavatarUrl),
           "reward": "3.2",
           "timeLimit": "20180419",
-          "taddress": app.globalData.userInfo.last_address || that.data.address
+          "taddress": that.data.address || app.globalData.userInfo.last_address,
+          "longitude": that.data.longitude,
+          "latitude": that.data.latitude
         }
       })
       
-      
       wx.request({
-        url: 'http://address/180404web_bg_war/newTask', 
+        url: app.url+'/wx_server/newTask',
         data: that.data.input_data,
         method: 'POST',
         header: {
@@ -61,10 +65,10 @@ Page({
           console.log(res.data)
           that.setData({ model: '发布成功' })
         },
-        fail: function(err){
-          that.setData({model: err.toString()})
+        fail: function (err) {
+          that.setData({ model: err.toString() })
         },
-        complete: function(){
+        complete: function () {
           wx.showModal({
             title: '提示',
             content: that.data.model,
@@ -82,17 +86,19 @@ Page({
       })
     }
   },
-  getLocation: function (event){
+  getLocation: function (event) {
     var that = this;
     wx.chooseLocation({
-      success: function(res){
+      success: function (res) {
         app.globalData.address = res.name;
-        that.setData({address: res.name});
-        console.log(res)
+        that.setData({ address: res.name });
+        that.setData({ latitude: res.latitude })
+        that.setData({ longitude: res.longitude })
+        console.log('手动选择地址', res)
       }
     })
   },
-  chooseImage: function() {
+  chooseImage: function () {
     var that = this;
     wx.chooseImage({
       count: 9, // 默认9
@@ -101,25 +107,66 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
-        that.setData({ tavatarUrl: res.tempFilePaths})
-        console.log('photos', that.data.tavatarUrl)
+        //that.setData({ tavatarUrl: res.tempFilePaths })
+        console.log('photos', tempFilePaths)
+        
+        
+        for (var i = 0; i < tempFilePaths.length; i++) {
+          wx.showLoading({
+            title: '上传图片中',
+          })
+          var createRandomId = that.createRandomId();
+          console.log('选中图片', tempFilePaths[i], i)
+          wx.uploadFile({
+            url: app.url+'/wx_server/fileUpload', 
+            filePath: tempFilePaths[i],
+            name: 'file',
+            header: {"Content-Type": "multipart/form-data"},
+            success: function (res) {
+              console.log('成功', res.data)
+              
+              var data = JSON.parse(res.data)
+              
+              //do something
+              that.data.tavatarUrl.push(data.object.url)
+              that.setData({ tavatarUrl: that.data.tavatarUrl})
+              console.log('图片上传成功')
+
+              
+              console.log('loading结束')
+              wx.hideLoading();
+              
+            },
+            fail: function(err){  
+              console.log('失败', err)
+
+            }
+
+          })
+        }
       }
     })
   },
-  del_photo: function(e){
+  del_photo: function (e) {
     //删除
     this.data.tavatarUrl.splice(e.currentTarget.dataset.index, 1);
-    this.setData({ tavatarUrl: this.data.tavatarUrl});
+    this.setData({ tavatarUrl: this.data.tavatarUrl });
   },
-  onLoad: function(){
+  onLoad: function () {
+    var that = this;
     //定义相机
     this.ctx = wx.createCameraContext()
-    this.setData({ address: app.globalData.userInfo_wx.last_address || that.data.address})
-    console.log('app', app)
+
+    console.log('app', app, 'data', this.data)
+
   },
-  onUnload: function(){
+  onUnload: function () {
     wx.reLaunch({
       url: '../../pages/index/index'
     })
+  },
+  createRandomId: function () {
+    
+    return (Math.random() * 10000000).toString(16).substr(0, 4) + '-' + (new Date()).getTime() + '-' + Math.random().toString().substr(2, 5);
   }
 })

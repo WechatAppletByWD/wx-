@@ -1,0 +1,13 @@
+<!--pages/author/author.wxml-->
+<view class='main'>
+  <image class
+  ="logo" src='http://pxyu.xin:8080/upload/e22b30bf-d458-4d9a-a6ba-3cfcb075abba.png'></image>
+  <view>登峰科技工作室</view>
+
+  <view>哈尔滨理工大学</view>
+  <view>王佳峰 邓焕银</view>
+  <view>承接微信，app，H5，后台，网站开发</view>
+  <view >dftechnology@126.com</view>
+  <view>18846115584</view>
+</view>
+

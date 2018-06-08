@@ -1,0 +1,14 @@
+<view class='main'>
+  <view class="section">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <textarea placeholder="说出您觉得不妥的地方，我们将感激不尽" name="textarea"/>
+      <view class="btn-area">
+        <view class='btn-sub'>
+          <button formType="submit">确认提交</button>
+        </view>
+      
+      </view>
+    </form>
+  </view>
+
+</view>

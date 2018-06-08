@@ -1,18 +1,20 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/mine/mine",
     "pages/order/order",
     "pages/toAddTask/toAddTask",
     "pages/addTask/addTask",
     "pages/content/content",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/opinion/opinion",
+    "pages/author/author"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "顺带手",
+    "navigationBarTextStyle": "black"
   },
   "enablePullDownRefresh": true,
   "tabBar": {

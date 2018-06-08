@@ -1,12 +1,16 @@
-.container_mine{
-  overflow-x: hidden;
+.container_mine {
+  height: 100vh;
+  overflow: hidden;
+  background-color: #eee;
 }
+
 .userinfo {
   padding: 1rem;
+  padding-bottom: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #f0145a;
+  background: linear-gradient(#7c1823, #f1939c);
 }
 
 .userinfo-avatar {
@@ -15,21 +19,185 @@
   margin: 20rpx;
   border-radius: 50%;
 }
+
 .userinfo text {
   color: #fff;
 }
-.userinfo-tel{
+
+.userinfo-tel {
   font-size: 0.7rem;
 }
-.userinfo-addr{
+
+.userinfo-addr {
   font-size: 0.7rem;
 }
 
 /*菜单*/
-.setting{
-  width: 100%;
-  text-align: center;
+
+.setting {
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  color: #fff;
   font-size: 0.8rem;
-  line-height: 2rem;
-  border-bottom: 2px solid #eee;
+}
+
+.rank_message {
+  margin: 0.5rem 0.5rem;
+  position: relative;
+  background-color: #fff;
+  top: -2rem;
+  height: 4rem;
+  border-radius: 5px;
+  box-shadow: 3px 3px 8px #aaa;
+}
+
+.rank_message .rank {
+  width: 30%;
+  text-align: center;
+  font-weight: 900;
+  font-size: 0.8rem;
+  border-right: 1px solid #aaa;
+}
+
+.bg {
+  display: inline-block;
+  width: 100%;
+  height: 4rem;
+  text-align: center;
+  line-height: 100%;
+  box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2) inset;
+}
+
+.bg .stage {
+  height: 4rem;
+  perspective: 10rem;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2) inset;
+}
+
+.bg .stage::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+}
+
+.bg .stage .containers {
+  transform-style: preserve-3d;
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 4rem;
+  transition: all 1s;
+}
+
+.bg .stage .containers view {
+  display: inline-block;
+  position: absolute;
+  top: 1.5rem;
+  left: 2rem;
+  height: 1rem;
+  backface-visibility: hidden;
+}
+
+.bg .stage .containers view:nth-child(1) {
+  transform: translateZ(1.5rem);
+}
+
+.bg .stage .containers view:nth-child(2) {
+  transform: rotateX(60deg) translateZ(1.5rem);
+}
+
+.bg .stage .containers view:nth-child(3) {
+  transform: rotateX(120deg) translateZ(1.5rem);
+}
+
+.bg .stage .containers view:nth-child(4) {
+  transform: rotateX(180deg) translateZ(1.5rem);
+}
+
+.bg .stage .containers view:nth-child(5) {
+  transform: rotateX(240deg) translateZ(1.5rem);
+}
+
+.bg .stage .containers view:nth-child(6) {
+  transform: rotateX(300deg) translateZ(1.5rem);
+}
+
+.rank_message .rank image {
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+}
+
+.rank_message .message {
+  width: 70%;
+}
+
+.menu {
+  position: fixed;
+  right: 1rem;
+  bottom: 2.5rem;
+  z-index: 100;
+}
+
+.menu image {
+  width: 2rem;
+  height: 2rem;
+}
+
+.menu .menu-list {
+  /* display: none; */
+  position: absolute;
+  padding: 0.7rem;
+  padding-bottom: 1.5rem;
+  right: 3rem;
+  bottom: 0rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+}
+
+.menu .menu-list::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-width: 0.5rem;
+  border-style: solid;
+  border-color: transparent transparent transparent #fff;
+  position: absolute;
+  right: -1rem;
+  bottom: 1rem;
+}
+
+.menu .menu-list view {
+  display: inline-block;
+  margin: 0.3rem 0;
+  color: #777;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  width: 7rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.gray-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 50;
+}
+
+.footer {
+  width: 100vw;
+  text-align: center;
+  color: #aaa;
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 1rem;
 }

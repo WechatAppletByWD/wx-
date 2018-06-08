@@ -1,15 +1,12 @@
 <view class='main'>
-  <swiper class='swiper' indicator-dots="{{indicatorDots}}"  
-    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <swiper class='swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{imgUrls}}" wx:key="*this">
       <swiper-item>
-        <image src="{{item}}" class="slide-image"/>
+        <image src="{{item}}" class="slide-image" />
       </swiper-item>
     </block>
   </swiper>
-
-  
-
+  <button open-type="getUserInfo" wx:if="{{canIUse && !canIget}}" bindgetuserinfo="getUserInfo">授权获取用户信息</button> 
   <view wx:for="{{array}}" wx:key="*this " class='list'>
     <view class='top grid'>
       <view class='grid-cell col-2'>
@@ -20,23 +17,21 @@
           {{item.title}}
         </view>
         <view class='info'>
-          {{item.taddress}}
-          |
-          {{item.tcreate_time}}
+          {{item.taddress}} | {{item.tcreate_time}}
         </view>
       </view>
     </view>
     <view class='content' id='{{item.tlocation_id}}' bindtap='gotoContent'>
-      <!-- <view class='photos'>
-        <image wx:for="{{item.tavatarUrl}}" src='{{item}}' class='photo'></image>
-      </view> -->
+      <scroll-view scroll-x class='photos'>
+        <image wx:key="*this" wx:for="{{item.tavatarUrl}}" wx:if="{{imgReady}}" src='{{item}}' class='photo'></image>
+      </scroll-view>
       <view class='main_txt'>{{item.content}}</view>
     </view>
     <view class='button-box'>
       <button type='primary' id='{{item.tlocation_id}}' size='mini' class='button receive' bindtap='taskIncept'>我来帮你</button>
     </view>
   </view>
-  
+  <view class='getMsg'>{{getMsg}}</view>
 </view>
 <!--接单成功弹窗  -->
 <view class="modal-box" hidden="{{flag}}" bindtap="hide">

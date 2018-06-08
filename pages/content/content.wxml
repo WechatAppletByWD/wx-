@@ -9,10 +9,10 @@
 
 
   <!--任务内容主题  -->
-  <view class='content' id='{{taskInfo.tlocation_id}}' bindtap='gotoContent'>
-    <view class='photos'>
-      <image wx:for="{{imgUrls}}" src='{{item}}' class='photo'></image>
-    </view>
+  <view class='content' id='{{taskInfo.tlocation_id}}'>
+    <scroll-view scroll-x wx:if="{{imgReady}}" class='photos'  bindtap='previewImage'>
+      <image wx:for="{{taskInfo.tavatarUrl}}"  wx:key="*this" src='{{item}}' class='photo'></image>
+    </scroll-view>
     <view class='main_txt'>{{taskInfo.content}}</view>
   </view>
 

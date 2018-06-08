@@ -1,17 +1,49 @@
 <view class="container_mine">
-
+  <view class='gray-bg' wx:if="{{showMenu}}" bindtap='closeShow'></view>
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     <text class="userinfo-tel">{{userInfo.safe_tel}}</text>
     <text class="userinfo-addr">{{userInfo.address}}</text>
-    
+    <view class="setting" bindtap='gotoSetting'>
+      设置
+    </view>
   </view>
 
   <view class="separate"></view>
-  <view class="setting" bindtap='gotoSetting'>
-    修改个人信息
+  <view class="grid rank_message">
+    <view class='grid-cell col-3 rank'>
+      <view>
+        <image wx:if="{{userInfo.rank===0}}" id='0' src='http://pxyu.xin:8080/upload/b8b7008d-8650-42a9-ad4e-ef85709fcdb5.png'></image>
+        <image wx:if="{{userInfo.rank===1}}" id='1' src='http://pxyu.xin:8080/upload/1097ff9e-6acc-478d-b782-3f0eec648f5f.png'></image>
+        <image wx:if="{{userInfo.rank===2}}" id='2' src='http://pxyu.xin:8080/upload/57488c32-e041-4afa-baef-a454e34acf9e.png'></image>
+        <image wx:if="{{userInfo.rank===3}}" id='3' src='http://pxyu.xin:8080/upload/bc4a0c66-8276-4c70-9167-89d1cbb42736.png'></image>
+      </view>
+
+      {{userInfo.credit}}
+
+    </view>
+    <view class='grid-cell col-9 message'>
+      <view class='bg'>
+        <view class='stage'>
+          <view class='containers' style='transform: rotateX({{rotateX}}deg)'>
+            <view class='list' wx:for="{{message}}" wx:key="*this " style=''>{{item.topic}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
-  
-  <view class="separate"></view>
+  <view class="menu" bindtap='showMenu'>
+    <image src='http://pxyu.xin:8080/upload/cdce578b-4d60-404f-85e3-04ec5a89fefc.png'></image>
+    <view class='menu-list'  wx:if="{{showMenu}}" id='menu_list' bindtap='showMenu'>
+      <view bindtap='gotoOpinion'>意见反馈</view>
+      <view>商业合作</view>
+      <view bindtap='gotoAuthor'>关于我们</view>
+    </view>
+
+  </view>
+  <view class='footer'>
+    <view>V0.1.11</view>
+    登峰科技工作室 | 哈理工
+  </view>
 </view>

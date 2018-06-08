@@ -3,87 +3,61 @@
   height: auto;
   overflow-x: hidden;
 }
-/* .table{
-  width: 100%;
-  background-color: #fff;
-}
-.table .btn_table{
-  text-align: center;
-  font-size: 0.8rem;
-  line-height: 2rem;
-  color: #666;
-}
-.table .btn_table.active{
-  border-bottom: 0.1rem solid #ff6700;
-}
-.task{
-  margin-top: 0.6rem;
-}
-.task .title{
-  padding-left: 1rem;
-  background-color: #fff;
-  font-size: 0.8rem;
-  line-height: 1.5rem;
-}
-.task .content{
-  padding: 1rem 2rem;
-  font-size: 0.8rem;
-  background-color: #fafafa;
-  color: #666;
-}
-.button-box {
-  padding-top: 0.5rem;
-  text-align: right;
-  background-color: #fff;
-}
 
-.button-box .button {
-  margin-right: 1rem;
-  color: red;
-  background-color: #fff;
-  border-radius: 1rem;
-  border: 1px solid red;
-  font-size: 0.8rem;
-} */
-
-/**index.wxss**/  
 .swiper-tab{  
     position: relative;
     width: 100%;  
     border-bottom: 2rpx solid #777777;  
     text-align: center;  
-    line-height: 80rpx;}  
+    line-height: 80rpx;
+}  
 .swiper-tab-list{  
-    
     font-size: 30rpx;  
     display: inline-block;  
     width: 25%;  
     color: #777777;  
+    transition: all 0.5s;
+    transform:skewX(160deg);
 }  
-.on{ color: #da7c0c;  
-    border-bottom: 5rpx solid #da7c0c;}  
+.swiper-tab-list view{
+  
+}
+.on{ 
+    color: #fff;  
+    background-color: #da7c0c;
+    
+}  
   
 .swiper-box{  }  
-.swiper-box view{  
-   
-} 
+.swiper-box view{  } 
 swiper-item{
   height: auto;
   overflow: scroll;
 }
 .task{
-  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+  background-color: #fff;
 }
 .task .title{
+  padding-top: 1rem;
   padding-left: 1rem;
-  background-color: #fff;
-  font-size: 0.8rem;
-  line-height: 1.5rem;
+  
+  font-size: 0.9rem;
+  line-height: 2rem;
+}
+.task .title .head-word{
+  display: inline-block;
+  margin-right: 1rem;
+  width: 2rem;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #ff6700;
 }
 .task .content{
   padding: 1rem 2rem;
   font-size: 0.8rem;
-  background-color: #fafafa;
+  margin-left: 1rem;
+  border-bottom: 1rpx solid #ddd;
   color: #666;
 }
 .button-box {
@@ -96,9 +70,9 @@ swiper-item{
   margin-right: 1rem;
   color: #c02c38;
   background-color: #fff;
-  border-radius: 1rem;
+  border-radius: 0;
   border: 1px solid #c02c38;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 } 
 .button-box .button.complete{
   color: #20a162;
