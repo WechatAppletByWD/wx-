@@ -1,4 +1,5 @@
 // pages/opinion/opinion.js
+var app = getApp();
 Page({
 
   /**
