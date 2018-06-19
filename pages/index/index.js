@@ -1,8 +1,7 @@
 var app = getApp();
 Page({
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIget: 1,
+    
     array: [],
     imgUrls: [
       'http://5b0988e595225.cdn.sohucs.com/images/20171018/dc4263c3df0e44a5980390ae0449aaf7.jpeg',
@@ -53,150 +52,7 @@ Page({
   onPullDownRefresh: function () {
     this.refresh();
   },
-  getUserInfo: function () {
-    var that = this;
-    console.log('app.data', app.globalData)
-    console.log('授权成功')
-    wx.getUserInfo({
-      success: function (res) {
-        that.setData({ canIget: 1 });
-        console.log(res.userInfo)
-        app.globalData.userInfo = res.userInfo
-        console.log(app.globalData)
-        new Promise((resolve, reject) => {
-          wx.login({
-            success: res => {
-              // 发送 res.code 到后台换取 openId, sessionKey, unionId
-              var that = this;
-              wx.request({
-                url: app.url+'/wx/api/getUserInfo',
-                data: {
-                  code: res.code
-                },
-                success: function (res) {
-                  console.log('openid', res.data.openid)
-                  app.globalData.openid = res.data.openid;
-                  console.log(res.data)
-                  resolve()
-                },
-                fail: function () {
-
-                }
-              })
-            }
-          })
-        }).then(() => {
-          return new Promise((resolve, reject) => {
-            wx.getUserInfo({
-              success: res => {
-                // 可以将 res 发送给后台解码出 unionId
-                app.globalData.userInfo = res.userInfo
-                // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                // 所以此处加入 callback 以防止这种情况
-                if (this.userInfoReadyCallback) {
-                  this.userInfoReadyCallback(res)
-                }
-                console.log('请求数据完成', app.globalData.userInfo)
-                resolve(res.userInfo);
-
-              }
-
-            })
-          })
-        }).then(() => {
-          return new Promise((resolve, reject) => {
-            wx.request({
-              url: app.url+'/wx_server/userByLocationId',
-              data: {
-                location_id: app.globalData.openid
-              },
-              header: {
-                'content-type': 'application/json' // 默认值
-              },
-              success: function (res) {
-                console.log('查询用户', res.data)
-                if (!res.data.object.username) {     //新用户
-                  var userInfo = app.globalData.userInfo;
-                  console.log('新用户请求注册', app.globalData)
-                  //新用户将信息存入数据库
-                  wx.request({
-                    url: app.url+'/wx_server/newUser', //仅为示例，并非真实的接口地址
-                    method: 'POST',
-                    data: {
-                      "location_id": app.globalData.openid,
-                      "username": app.globalData.userInfo.nickName,
-                      "password": "xxxxxxxxx",
-                      "sex": app.globalData.userInfo.gender,
-                      "wechat": "xxxxxxxxx",
-                      "qq": "xxxxxxxx",
-                      "tel": "",
-                      "address": "",
-                      "ip": "127.121.34.516xxx",
-                      "device": "iphonexxxx",
-                      "address_id": "xxxxxxxxxxxxx",
-                      "avatarUrl": app.globalData.userInfo.avatarUrl
-                    },
-                    header: {
-                      'content-type': 'application/json' // 默认值
-                    },
-                    success: function (res) {
-
-
-                      resolve(res)
-                    }
-                  })
-                } else {
-                  console.log('老用户')
-                  app.globalData.userInfo.address = res.data.object.address
-                  app.globalData.userInfo.tel = res.data.object.tel
-                  app.globalData.userInfo_wx = res.data.object
-                  resolve(res);
-                }
-              }
-            })
-          })
-        }).then(() => {
-
-          if (!app.globalData.userInfo.address) {
-            wx.chooseLocation({
-              success: function (res) {
-                app.globalData.address = res.name;
-                console.log('globalData', app.globalData)
-                var userInfo = app.globalData.userInfo;
-                wx.request({
-                  url: app.url+'/wx_server/userUpdate',
-                  method: 'POST',
-                  data: {
-                    "location_id": app.globalData.openid,
-                    "username": userInfo.nickName,
-                    "password": "xxxxxxxxx",
-                    "sex": userInfo.gender,
-                    "wechat": "xxxxxxxxx",
-                    "qq": "xxxxxxxx",
-                    "tel": "",
-                    "address": res.address,
-                    "ip": "127.121.34.516xxx",
-                    "device": "iphonexxxx",
-                    "address_id": "xxxxxxxxxxxxx",
-                    "avatarUrl": userInfo.avatarUrl
-                  },
-                  header: {
-                    'content-type': 'application/json' // 默认值
-                  },
-                  success: function (res) {
-
-                  }
-                })
-              }
-            })
-          }
-        }).catch((err) => {
-          console.error(err)
-        })
-      }
-    })
-
-  },
+  
   refresh: function () {
     //初始化数据
     this.setData({ count: 0 })
@@ -211,24 +67,7 @@ Page({
     this.getList(this.data.count);
     
     var that = this;
-    // 查看是否授权
-    console.log('gd', app.globalData)
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-              console.log('已经授权', res.userInfo)
-              that.setData({ canIget: 1 });
-              that.getUserInfo()
-            }
-          })
-        } else {
-          that.setData({ canIget: 0 });
-        }
-      }
-    })
+    
 
   },
   getList: function (start) {

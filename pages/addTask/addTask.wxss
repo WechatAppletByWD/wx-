@@ -55,14 +55,16 @@
   font-size: 1rem;
   padding-left: 1rem;
   background-color: #fff;
+  font-weight: 700;
 }
 .section #content{
   margin: 0;
   width: 100%;
-  padding-left: 2rem;
+  padding-left: 1rem;
   font-size: 0.7rem;
   padding-top: 0.5rem;
   background-color: #fff;
+  
 }
 .btn-area{
   position: fixed;

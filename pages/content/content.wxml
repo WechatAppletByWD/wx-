@@ -32,7 +32,7 @@
   </view>
 </view>
 <view class='footer'>
-  <view class='button-box'>
+  <view class='button-box' wx:if="{{!content_by_order}}">
     <button type='primary' size='mini' class='button' bindtap="show">联系TA</button>
     <button type='warn' size='mini' class='button' id='{{taskInfo.tlocation_id}}' bindtap='taskIncept'>接单</button>
   </view>

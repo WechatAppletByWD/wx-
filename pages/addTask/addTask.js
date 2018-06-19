@@ -23,7 +23,7 @@ Page({
   },
   formSubmit: function (e) {
     var that = this;
-    if (!that.data.longitude || !e.detail.value || !e.detail.value.content || !app.globalData.openid) {
+    if (!that.data.title || !that.data.longitude || !e.detail.value || !e.detail.value.content || !app.globalData.openid) {
 
       wx.showModal({
         title: '',
@@ -118,12 +118,12 @@ Page({
           var createRandomId = that.createRandomId();
           console.log('选中图片', tempFilePaths[i], i)
           wx.uploadFile({
-            url: app.url+'/wx_server/fileUpload', 
+            url: 'https://www.yellowfox.cn/wx_server/fileUpload', 
             filePath: tempFilePaths[i],
             name: 'file',
             header: {"Content-Type": "multipart/form-data"},
             success: function (res) {
-              console.log('成功', res.data)
+              console.log('成功', res)
               
               var data = JSON.parse(res.data)
               

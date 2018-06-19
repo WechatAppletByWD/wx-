@@ -7,6 +7,26 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     var that = this;
+
+    //获取api
+    wx.request({
+      url: that.url +'/wx_server/getAllApi', 
+      data: {
+       
+      },
+      dataType: 'json',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var json = res.data.object;
+        json = json.replace(/'/g, '"');
+        json = JSON.parse(json);
+        that.globalData.api = json;
+        console.log('获取api =>', json);
+      }
+    })
+
     // 登录
     new Promise((resolve, reject) => {
         wx.login({
@@ -141,6 +161,7 @@ App({
     openid: null,
     userInfo_wx: null,
     demo: null,
+    api: null
   },
   url: 'address'  ///////address
 })

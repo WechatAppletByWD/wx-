@@ -25,12 +25,12 @@ Page({
   },
   formSubmit: function (e) {
     var that = this;
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    console.log('form发生了submit事件，携带数据为：', e.detail.value, app.globalData)
     wx.request({
       url: app.url+'/wx_server/newSuggestion', //仅为示例，并非真实的接口地址
       data: {
-        topic: e.detail.value.textarea,
-        suggest_id: that.data.openid
+        content: e.detail.value.textarea,
+        suggest_id: app.globalData.openid
       },
       method: 'POST',
       header: {

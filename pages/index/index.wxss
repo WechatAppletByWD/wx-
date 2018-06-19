@@ -1,6 +1,6 @@
 
 .main {
-  background: #eee url('http://pxyu.xin:8080/upload/1d444f14-b48a-48b5-9bbf-5c7f2a6b96b4.jpg');
+  background: #eee url('http://pxyu.xin:8080/system/index_bgy.jpg');
   background-size: 100% auto;
   min-height: 100vh;
   overflow-x: hidden;

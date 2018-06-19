@@ -37,7 +37,7 @@ Page({
   getData: function(){
     var that = this;
     wx.request({
-      url: app.url+'/wx_server/getTaskByLocationId',
+      url: app.url+'/wx_server/taskByLocationId',
       data: {
         location_id: app.globalData.openid
       },
@@ -72,7 +72,7 @@ Page({
   gotoContent: function (event) {
     console.log(event);
     wx.navigateTo({
-      url: '../content/content?currentTarget=' + event.currentTarget.id
+      url: '../content/content?currentTarget=' + event.currentTarget.id + '&isOrder=1'
     })
   },
   /** 

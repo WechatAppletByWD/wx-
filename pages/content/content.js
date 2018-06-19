@@ -3,6 +3,7 @@ Page({
   data: {
     model: null,
     flag: true,
+    content_by_order: 0,
     imgReady: false         //图片显示控制变量
   },
   show: function () {
@@ -26,6 +27,8 @@ Page({
     })
   },
   onLoad: function(option){
+    console.log(option)
+    this.setData({content_by_order: option.isOrder})
     var that = this;
     new Promise((resolve, reject)=>{
       that.setData({ imgReady: false })         //图片路径转json完成修改控制变量，不显示图片
@@ -46,6 +49,9 @@ Page({
           that.setData({ [key]: json })
           that.setData({ imgReady: true })         //显示图片
           resolve(res.data.object)
+          if (res.data.object.tcreate_id === app.globalData.openid){
+            that.setData({ content_by_order: 1 })
+          }
         }
       })
     }).then((res)=>{

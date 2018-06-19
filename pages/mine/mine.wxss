@@ -18,8 +18,12 @@
   height: 108rpx;
   margin: 20rpx;
   border-radius: 50%;
+  overflow: hidden;
 }
 
+.userinfo-nickname{
+  color: #fff;
+}
 .userinfo text {
   color: #fff;
 }
@@ -58,6 +62,9 @@
   font-weight: 900;
   font-size: 0.8rem;
   border-right: 1px solid #aaa;
+}
+.rank_message .rank image{
+  margin-top: 0.5rem;
 }
 
 .bg {

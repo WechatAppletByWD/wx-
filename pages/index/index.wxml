@@ -6,7 +6,7 @@
       </swiper-item>
     </block>
   </swiper>
-  <button open-type="getUserInfo" wx:if="{{canIUse && !canIget}}" bindgetuserinfo="getUserInfo">授权获取用户信息</button> 
+  
   <view wx:for="{{array}}" wx:key="*this " class='list'>
     <view class='top grid'>
       <view class='grid-cell col-2'>

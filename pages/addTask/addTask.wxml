@@ -2,19 +2,19 @@
   <view class="section">
     <form bindsubmit="formSubmit" bindreset="formReset">
       <view class='btn_camera' bindtap="chooseImage">
-        <image src="http://pxyu.xin:8080/upload/e6416bd7-ec99-423e-bd4c-b81b4182f5be.png"></image>
+        <image src="http://pxyu.xin:8080/system/camera.png"></image>
         <view style='font-size:0.7rem;color: #aaa'>添加图片</view>
       </view>
       <view class='photo_list'>
         <view class='photo_box' wx:for="{{tavatarUrl}}" wx:key="*this">
           <image class='photo' src='{{item}}'></image>
-          <view class='del_photo' data-index='{{index}}' bindtap='del_photo' style="background-image: url('http://pxyu.xin:8080/upload/3f6b8004-5619-4316-b5fa-1d402c142aed.png')"></view>
+          <view class='del_photo' data-index='{{index}}' bindtap='del_photo' style="background-image: url('http://pxyu.xin:8080/system/del_btn.png')"></view>
         </view>
       </view>
-      <input placeholder="给任务起一个响亮的名字" name="title" id="title" focus="{{focus}}" />
-      <textarea placeholder="这个只有在按钮点击的时候才聚焦" name="content" id="content" focus="{{focus}}" />
+      <input placeholder="给任务起一个响亮的名字吧" name="title" id="title" focus="{{focus}}" />
+      <textarea placeholder="将内容和同学们介绍清楚~~~" name="content" id="content" focus="{{focus}}" />
       <view class="now_address" bindtap='getLocation'>
-        <view style="background-image: url('http://pxyu.xin:8080/upload/13d000bf-8787-480e-ab09-58707f817d13.png')"  name="taddress" class='address_text'>{{address}}</view>
+        <view style="background-image: url('http://pxyu.xin:8080/system/location.png')"  name="taddress" class='address_text'>{{address}}</view>
 
       </view>
       <view class="btn-area">

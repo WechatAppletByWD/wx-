@@ -78,7 +78,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-
+        console.log('修改成功！ => ', res)
         that.setData({ model: '修改成功！' })
       },
       fail: function (err) {
